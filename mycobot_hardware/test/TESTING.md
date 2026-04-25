@@ -101,13 +101,11 @@ ros2 control list_hardware_components 2>/dev/null || true
 The dependable check: ask pluginlib directly.
 
 ```bash
-ros2 run pluginlib resolve hardware_interface mycobot_hardware/MyCobotHardware
+ls ~/arm_ws/mycobot_hardware/mycobot_hardware/install/mycobot_hardware/share/ament_index/resource_index/hardware_interface__pluginlib__plugin/
+cat ~/arm_ws/mycobot_hardware/mycobot_hardware/install/mycobot_hardware/share/ament_index/resource_index/hardware_interface__pluginlib__plugin/mycobot_hardware
 ```
 
-Expected: a path to `libmycobot_hardware.so`. If you see "could not find
-plugin", the install step didn't pick up `mycobot_hardware_plugin.xml`
-— check that `pluginlib_export_plugin_description_file` ran and that the
-xml is in `install/mycobot_hardware/share/mycobot_hardware/`.
+Expected: The cat should print something like share/mycobot_hardware/mycobot_hardware_plugin.xml. If it does, registration is complete and the plugin is fully discoverable.
 
 ---
 
