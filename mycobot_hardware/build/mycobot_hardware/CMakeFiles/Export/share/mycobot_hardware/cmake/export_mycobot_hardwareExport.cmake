@@ -55,7 +55,7 @@ add_library(mycobot_hardware::mycobot_hardware SHARED IMPORTED)
 
 set_target_properties(mycobot_hardware::mycobot_hardware PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include;/usr/local/include"
-  INTERFACE_LINK_LIBRARIES "/usr/local/lib/libsoem.a;hardware_interface::fake_components;hardware_interface::mock_components;hardware_interface::hardware_interface;pluginlib::pluginlib;rclcpp::rclcpp;rclcpp_lifecycle::rclcpp_lifecycle"
+  INTERFACE_LINK_LIBRARIES "/usr/local/lib/libsoem.so;hardware_interface::fake_components;hardware_interface::mock_components;hardware_interface::hardware_interface;pluginlib::pluginlib;rclcpp::rclcpp;rclcpp_lifecycle::rclcpp_lifecycle"
 )
 
 if(CMAKE_VERSION VERSION_LESS 2.8.12)

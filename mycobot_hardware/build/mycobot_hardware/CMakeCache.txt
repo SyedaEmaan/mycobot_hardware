@@ -246,7 +246,7 @@ SITE:STRING=munzir-ThinkPad-T14s-Gen-4
 SOEM_INCLUDE_DIR:PATH=/usr/local/include
 
 //Path to a library.
-SOEM_LIBRARY:FILEPATH=/usr/local/lib/libsoem.a
+SOEM_LIBRARY:FILEPATH=/usr/local/lib/libsoem.so
 
 //Path to a file.
 TINYXML2_INCLUDE_DIR:PATH=/usr/include

@@ -92,7 +92,7 @@ mycobot_hardware_EXTERNAL_OBJECTS =
 
 libmycobot_hardware.so: CMakeFiles/mycobot_hardware.dir/src/mycobot_hardware.cpp.o
 libmycobot_hardware.so: CMakeFiles/mycobot_hardware.dir/build.make
-libmycobot_hardware.so: /usr/local/lib/libsoem.a
+libmycobot_hardware.so: /usr/local/lib/libsoem.so
 libmycobot_hardware.so: /opt/ros/humble/lib/libfake_components.so
 libmycobot_hardware.so: /opt/ros/humble/lib/libmock_components.so
 libmycobot_hardware.so: /opt/ros/humble/lib/libhardware_interface.so

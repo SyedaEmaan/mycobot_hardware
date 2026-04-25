@@ -90,6 +90,7 @@ colcon build --packages-select mycobot_hardware \
 Confirm pluginlib can find and load the .so before anything else.
 
 ```bash
+source install/setup.bash
 ros2 pkg list | grep mycobot_hardware
 ros2 pkg prefix mycobot_hardware
 
