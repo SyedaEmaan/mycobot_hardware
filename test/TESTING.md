@@ -40,7 +40,7 @@ sudo ldconfig
 
 Verify:
 ```bash
-ldconfig -p | grep soem        # should show libsoem.so
+ls /usr/local/lib/libsoem*       # should show libsoem.so
 ls /usr/local/include/soem     # should show soem.h
 ```
 
