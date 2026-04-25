@@ -1,18 +1,6 @@
-# Controller configuration for testing the MyCobotHardware plugin
-# WITHOUT MoveIt. Two test paths are configured:
-#
-#   1. forward_position_controller — the simplest possible test.
-#      You publish a Float64MultiArray of joint positions (rad) and the
-#      controller hands them straight to the hardware. No trajectory
-#      generation, no time, no interpolation.
-#
-#   2. joint_trajectory_controller — same controller MoveIt uses, but you
-#      can drive it directly with a FollowJointTrajectory action client
-#      (e.g. ros2 action send_goal). Lets you verify the full ros2_control
-#      pipeline before plugging in MoveIt.
-#
-# joint_state_broadcaster always runs so /joint_states reflects the live
-# motor encoder. Echo it with `ros2 topic echo /joint_states`.
+# Controller configuration for L2/L3/L4 testing of MyCobotHardware against
+# the mycobot URDF. Joint name MUST match the URDF — for mycobot it's
+# link1_to_link2, NOT joint_1.
 
 controller_manager:
   ros__parameters:
@@ -31,24 +19,24 @@ controller_manager:
 forward_position_controller:
   ros__parameters:
     joints:
-      - joint_1
-      # - joint_2
-      # - joint_3
-      # - joint_4
-      # - joint_5
-      # - joint_6
+      - link1_to_link2
+      # - link2_to_link3
+      # - link3_to_link4
+      # - link4_to_link5
+      # - link5_to_link6
+      # - link6_to_link6flange
     interface_name: position
 
 
 joint_trajectory_controller:
   ros__parameters:
     joints:
-      - joint_1
-      # - joint_2
-      # - joint_3
-      # - joint_4
-      # - joint_5
-      # - joint_6
+      - link1_to_link2
+      # - link2_to_link3
+      # - link3_to_link4
+      # - link4_to_link5
+      # - link5_to_link6
+      # - link6_to_link6flange
 
     command_interfaces:
       - position
@@ -64,6 +52,6 @@ joint_trajectory_controller:
     constraints:
       stopped_velocity_tolerance: 0.05
       goal_time: 1.0
-      joint_1:
+      link1_to_link2:
         trajectory: 0.5      # rad
         goal:       0.05     # rad
