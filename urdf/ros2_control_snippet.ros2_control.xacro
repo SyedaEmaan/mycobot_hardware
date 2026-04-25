@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!--
+  Drop-in snippet for the existing robot URDF/xacro.
+
+  Replace the existing <ros2_control> block (the one previously pointing to
+  Gazebo) with this one. Keep the rest of the URDF (links, visuals, the
+  <joint> elements outside of <ros2_control>) untouched.
+
+  IMPORTANT — edit these values for your hardware:
+
+    1. <param name="ifname">  : the network interface that has the cable to
+                                the EtherCAT bus. Find with `ip link`.
+                                Examples: "eth0", "eno1", "enp3s0".
+
+    2. counts_per_rad         : encoder counts per radian on the OUTPUT side
+                                of the gearbox. For a Laifual L70I-E-100-BF
+                                with a 17-bit encoder (131072 cnt/rev) and
+                                100:1 harmonic drive:
+                                  counts_per_rev_output = 100 * 131072
+                                                        = 13107200
+                                  counts_per_rad        = 13107200 / (2*pi)
+                                                        ≈ 2085932.0
+                                Verify against the datasheet shipped with
+                                your specific drive — variants exist.
+
+    3. slave_index            : 1-based index of this joint's drive on the
+                                EtherCAT bus, in the order the drives appear
+                                from the master. Use SOEM's slaveinfo tool
+                                to confirm: `slaveinfo eth0 -map`.
+
+  When you have only one motor (current state of your build), keep only the
+  first <joint> block. Add the remaining joints as drives are commissioned.
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="my_robot">
+
+  <ros2_control name="MyCobotHardwareSystem" type="system">
+
+    <hardware>
+      <plugin>mycobot_hardware/MyCobotHardware</plugin>
+      <param name="ifname">eth0</param>
+    </hardware>
+
+    <joint name="joint_1">
+      <param name="slave_index">1</param>
+      <param name="counts_per_rad">2085932.0</param>
+      <command_interface name="position">
+        <param name="min">-3.14159</param>
+        <param name="max"> 3.14159</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <!-- Add the remaining joints once their drives are on the bus. The
+         pattern repeats verbatim; only joint name, slave_index, and limits
+         change.
+
+    <joint name="joint_2">
+      <param name="slave_index">2</param>
+      <param name="counts_per_rad">2085932.0</param>
+      <command_interface name="position">
+        <param name="min">-1.5708</param>
+        <param name="max"> 1.5708</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    -->
+
+  </ros2_control>
+
+</robot>

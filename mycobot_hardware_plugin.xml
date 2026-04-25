@@ -1,0 +1,12 @@
+<library path="mycobot_hardware">
+  <class
+    name="mycobot_hardware/MyCobotHardware"
+    type="mycobot_hardware::MyCobotHardware"
+    base_class_type="hardware_interface::SystemInterface">
+    <description>
+      ros2_control SystemInterface for Laifual L70I-E-100-BF joint modules
+      driven over EtherCAT in CiA 402 Cyclic Synchronous Position mode.
+      Uses SOEM as the underlying EtherCAT master.
+    </description>
+  </class>
+</library>

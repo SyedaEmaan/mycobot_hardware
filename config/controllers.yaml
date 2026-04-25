@@ -1,0 +1,69 @@
+# Controller configuration for testing the MyCobotHardware plugin
+# WITHOUT MoveIt. Two test paths are configured:
+#
+#   1. forward_position_controller — the simplest possible test.
+#      You publish a Float64MultiArray of joint positions (rad) and the
+#      controller hands them straight to the hardware. No trajectory
+#      generation, no time, no interpolation.
+#
+#   2. joint_trajectory_controller — same controller MoveIt uses, but you
+#      can drive it directly with a FollowJointTrajectory action client
+#      (e.g. ros2 action send_goal). Lets you verify the full ros2_control
+#      pipeline before plugging in MoveIt.
+#
+# joint_state_broadcaster always runs so /joint_states reflects the live
+# motor encoder. Echo it with `ros2 topic echo /joint_states`.
+
+controller_manager:
+  ros__parameters:
+    update_rate: 200          # Hz — match the EtherCAT 5 ms cycle
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    forward_position_controller:
+      type: forward_command_controller/ForwardCommandController
+
+    joint_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+
+forward_position_controller:
+  ros__parameters:
+    joints:
+      - joint_1
+      # - joint_2
+      # - joint_3
+      # - joint_4
+      # - joint_5
+      # - joint_6
+    interface_name: position
+
+
+joint_trajectory_controller:
+  ros__parameters:
+    joints:
+      - joint_1
+      # - joint_2
+      # - joint_3
+      # - joint_4
+      # - joint_5
+      # - joint_6
+
+    command_interfaces:
+      - position
+
+    state_interfaces:
+      - position
+      - velocity
+
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+
+    # Loose tolerances for bring-up. Tighten once the joint tracks well.
+    constraints:
+      stopped_velocity_tolerance: 0.05
+      goal_time: 1.0
+      joint_1:
+        trajectory: 0.5      # rad
+        goal:       0.05     # rad

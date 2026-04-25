@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd"
+            schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>mycobot_hardware</name>
+  <version>0.1.0</version>
+  <description>
+    ros2_control SystemInterface for Laifual L70I-E-100-BF joint modules
+    over EtherCAT (CiA 402 CSP). Uses SOEM as the EtherCAT master.
+  </description>
+
+  <maintainer email="you@example.com">Your Name</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>hardware_interface</depend>
+  <depend>pluginlib</depend>
+  <depend>rclcpp</depend>
+  <depend>rclcpp_lifecycle</depend>
+
+  <!-- SOEM is not packaged for ROS yet; it must be installed manually. -->
+  <!-- See README.md for build instructions. -->
+
+  <export>
+    <build_type>ament_cmake</build_type>
+    <hardware_interface plugin="${prefix}/mycobot_hardware_plugin.xml"/>
+  </export>
+</package>
