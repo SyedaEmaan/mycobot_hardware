@@ -7,7 +7,43 @@
     </hardware>                              | -->
 <!-- =================================================================================== -->
 <robot name="mycobot_280">
-  <ros2_control name="RobotSystem" type="system">
+   <ros2_control name="MyCobotHardwareSystem" type="system">
+
+    <hardware>
+      <plugin>mycobot_hardware/MyCobotHardware</plugin>
+      <param name="ifname">eth0</param>
+    </hardware>
+
+    <joint name="joint_1">
+      <param name="slave_index">1</param>
+      <param name="counts_per_rad">2085932.0</param>
+      <command_interface name="position">
+        <param name="min">-3.14159</param>
+        <param name="max"> 3.14159</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <!-- Add the remaining joints once their drives are on the bus. The
+         pattern repeats verbatim; only joint name, slave_index, and limits
+         change.
+
+    <joint name="joint_2">
+      <param name="slave_index">2</param>
+      <param name="counts_per_rad">2085932.0</param>
+      <command_interface name="position">
+        <param name="min">-1.5708</param>
+        <param name="max"> 1.5708</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    -->
+
+  </ros2_control>
+  
+  <!-- ros2_control name="RobotSystem" type="system">
     <hardware>
       <plugin>mycobot_hardware/MyCobotHardware</plugin>
     </hardware>
@@ -111,7 +147,7 @@
       <state_interface name="position"/>
       <state_interface name="velocity"/>
     </joint>
-  </ros2_control>
+  </ros2_control -->
   <link name="world"/>
   <link name="base_link">
     <inertial>
