@@ -1,0 +1,7 @@
+/usr/bin/ld: /usr/local/lib/libsoem.a(ec_config.o): warning: relocation against `ecx_mapt' in read-only section `.text'
+/usr/bin/ld: /usr/local/lib/libsoem.a(ec_config.o): relocation R_X86_64_PC32 against symbol `ecx_mapt' can not be used when making a shared object; recompile with -fPIC
+/usr/bin/ld: final link failed: bad value
+collect2: error: ld returned 1 exit status
+gmake[2]: *** [CMakeFiles/mycobot_hardware.dir/build.make:225: libmycobot_hardware.so] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/mycobot_hardware.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

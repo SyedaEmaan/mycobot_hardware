@@ -1,0 +1,84 @@
+[0.000000] (-) TimerEvent: {}
+[0.000100] (mycobot_hardware) JobQueued: {'identifier': 'mycobot_hardware', 'dependencies': OrderedDict()}
+[0.000119] (mycobot_hardware) JobStarted: {'identifier': 'mycobot_hardware'}
+[0.018851] (mycobot_hardware) JobProgress: {'identifier': 'mycobot_hardware', 'progress': 'cmake'}
+[0.019219] (mycobot_hardware) Command: {'cmd': ['/usr/bin/cmake', '/home/rosdev/arm_ws/mycobot_hardware/mycobot_hardware', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/rosdev/arm_ws/mycobot_hardware/mycobot_hardware/install/mycobot_hardware'], 'cwd': '/home/rosdev/arm_ws/mycobot_hardware/mycobot_hardware/build/mycobot_hardware', 'env': OrderedDict([('TMUX', '/tmp/tmux-1000/default,26,0'), ('HOSTNAME', 'munzir-ThinkPad-T14s-Gen-4'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins::/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins::/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:'), ('HOME', '/home/rosdev'), ('OLDPWD', '/home/rosdev/arm_ws/mycobot_hardware'), ('TERM_PROGRAM_VERSION', '3.2a'), ('GAZEBO_MASTER_URI', 'http://localhost:11345'), ('ROS_PYTHON_VERSION', '3'), ('ROS_DISTRO', 'humble'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('NVIDIA_DRIVER_CAPABILITIES', 'all'), ('TERM', 'screen'), ('GAZEBO_MODEL_PATH', '/usr/share/gazebo-11/models:/usr/share/gazebo-11/models:/usr/share/gazebo-11/models:'), ('ROS_LOCALHOST_ONLY', '0'), ('QT_X11_NO_MITSHM', '1'), ('OGRE_RESOURCE_PATH', '/usr/lib/x86_64-linux-gnu/OGRE-1.9.0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('TERM_PROGRAM', 'tmux'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('DEBIAN_FRONTEND', 'noninteractive'), ('SHELL', '/bin/sh'), ('GAZEBO_RESOURCE_PATH', '/usr/share/gazebo-11:/usr/share/gazebo-11:/usr/share/gazebo-11:'), ('GAZEBO_MODEL_DATABASE_URI', 'http://models.gazebosim.org'), ('PWD', '/home/rosdev/arm_ws/mycobot_hardware/mycobot_hardware/build/mycobot_hardware'), ('LC_ALL', 'C.UTF-8'), ('GAZEBO_PLUGIN_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('TZ', 'UTC'), ('COLCON', '1'), ('TMUX_PANE', '%0'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.091942] (mycobot_hardware) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.096655] (mycobot_hardware) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.099588] (-) TimerEvent: {}
+[0.193127] (mycobot_hardware) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.199706] (-) TimerEvent: {}
+[0.202228] (mycobot_hardware) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.202499] (mycobot_hardware) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.203041] (mycobot_hardware) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.206932] (mycobot_hardware) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.299913] (-) TimerEvent: {}
+[0.356058] (mycobot_hardware) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[0.389446] (mycobot_hardware) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[0.400122] (-) TimerEvent: {}
+[0.417009] (mycobot_hardware) StdoutLine: {'line': b'-- Found hardware_interface: 2.53.1 (/opt/ros/humble/share/hardware_interface/cmake)\n'}
+[0.456628] (mycobot_hardware) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.459711] (mycobot_hardware) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.464738] (mycobot_hardware) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.471659] (mycobot_hardware) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.480486] (mycobot_hardware) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.500175] (-) TimerEvent: {}
+[0.600519] (-) TimerEvent: {}
+[0.616403] (mycobot_hardware) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.618094] (mycobot_hardware) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.10 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.632899] (mycobot_hardware) StdoutLine: {'line': b'-- Found TinyXML2 via Config file: TinyXML2_DIR-NOTFOUND\n'}
+[0.692842] (mycobot_hardware) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[0.697011] (mycobot_hardware) StdoutLine: {'line': b'-- Found TinyXML2 via Config file: TinyXML2_DIR-NOTFOUND\n'}
+[0.700718] (-) TimerEvent: {}
+[0.716400] (mycobot_hardware) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[0.719360] (mycobot_hardware) StdoutLine: {'line': b'-- Found TinyXML2 via Config file: TinyXML2_DIR-NOTFOUND\n'}
+[0.725730] (mycobot_hardware) StdoutLine: {'line': b'-- Found TinyXML2 via Config file: TinyXML2_DIR-NOTFOUND\n'}
+[0.734995] (mycobot_hardware) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.749021] (mycobot_hardware) StdoutLine: {'line': b'-- Looking for C++ include pthread.h\n'}
+[0.800960] (-) TimerEvent: {}
+[0.840003] (mycobot_hardware) StdoutLine: {'line': b'-- Looking for C++ include pthread.h - found\n'}
+[0.840282] (mycobot_hardware) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[0.901127] (-) TimerEvent: {}
+[0.940581] (mycobot_hardware) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[0.941610] (mycobot_hardware) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[0.980549] (mycobot_hardware) StdoutLine: {'line': b'-- SOEM include dirs: /usr/local/include\n'}
+[0.980708] (mycobot_hardware) StdoutLine: {'line': b'-- SOEM libraries:    /usr/local/lib/libsoem.a\n'}
+[1.001236] (-) TimerEvent: {}
+[1.027296] (mycobot_hardware) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.037955] (mycobot_hardware) StdoutLine: {'line': b'-- Generating done\n'}
+[1.041368] (mycobot_hardware) StdoutLine: {'line': b'-- Build files have been written to: /home/rosdev/arm_ws/mycobot_hardware/mycobot_hardware/build/mycobot_hardware\n'}
+[1.046882] (mycobot_hardware) CommandEnded: {'returncode': 0}
+[1.048877] (mycobot_hardware) JobProgress: {'identifier': 'mycobot_hardware', 'progress': 'build'}
+[1.049150] (mycobot_hardware) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/rosdev/arm_ws/mycobot_hardware/mycobot_hardware/build/mycobot_hardware', '--', '-j12', '-l12'], 'cwd': '/home/rosdev/arm_ws/mycobot_hardware/mycobot_hardware/build/mycobot_hardware', 'env': OrderedDict([('TMUX', '/tmp/tmux-1000/default,26,0'), ('HOSTNAME', 'munzir-ThinkPad-T14s-Gen-4'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins::/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins::/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:'), ('HOME', '/home/rosdev'), ('OLDPWD', '/home/rosdev/arm_ws/mycobot_hardware'), ('TERM_PROGRAM_VERSION', '3.2a'), ('GAZEBO_MASTER_URI', 'http://localhost:11345'), ('ROS_PYTHON_VERSION', '3'), ('ROS_DISTRO', 'humble'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('NVIDIA_DRIVER_CAPABILITIES', 'all'), ('TERM', 'screen'), ('GAZEBO_MODEL_PATH', '/usr/share/gazebo-11/models:/usr/share/gazebo-11/models:/usr/share/gazebo-11/models:'), ('ROS_LOCALHOST_ONLY', '0'), ('QT_X11_NO_MITSHM', '1'), ('OGRE_RESOURCE_PATH', '/usr/lib/x86_64-linux-gnu/OGRE-1.9.0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('TERM_PROGRAM', 'tmux'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('DEBIAN_FRONTEND', 'noninteractive'), ('SHELL', '/bin/sh'), ('GAZEBO_RESOURCE_PATH', '/usr/share/gazebo-11:/usr/share/gazebo-11:/usr/share/gazebo-11:'), ('GAZEBO_MODEL_DATABASE_URI', 'http://models.gazebosim.org'), ('PWD', '/home/rosdev/arm_ws/mycobot_hardware/mycobot_hardware/build/mycobot_hardware'), ('LC_ALL', 'C.UTF-8'), ('GAZEBO_PLUGIN_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('TZ', 'UTC'), ('COLCON', '1'), ('TMUX_PANE', '%0'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[1.101448] (-) TimerEvent: {}
+[1.116449] (mycobot_hardware) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/mycobot_hardware.dir/src/mycobot_hardware.cpp.o\x1b[0m\n'}
+[1.201608] (-) TimerEvent: {}
+[1.301978] (-) TimerEvent: {}
+[1.402534] (-) TimerEvent: {}
+[1.502881] (-) TimerEvent: {}
+[1.603198] (-) TimerEvent: {}
+[1.703427] (-) TimerEvent: {}
+[1.803753] (-) TimerEvent: {}
+[1.904000] (-) TimerEvent: {}
+[2.004212] (-) TimerEvent: {}
+[2.104528] (-) TimerEvent: {}
+[2.204859] (-) TimerEvent: {}
+[2.305190] (-) TimerEvent: {}
+[2.405530] (-) TimerEvent: {}
+[2.505847] (-) TimerEvent: {}
+[2.606183] (-) TimerEvent: {}
+[2.706410] (-) TimerEvent: {}
+[2.806746] (-) TimerEvent: {}
+[2.884823] (mycobot_hardware) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX shared library libmycobot_hardware.so\x1b[0m\n'}
+[2.906995] (-) TimerEvent: {}
+[2.984897] (mycobot_hardware) StderrLine: {'line': b"/usr/bin/ld: /usr/local/lib/libsoem.a(ec_config.o): warning: relocation against `ecx_mapt' in read-only section `.text'\n"}
+[2.991732] (mycobot_hardware) StderrLine: {'line': b"/usr/bin/ld: /usr/local/lib/libsoem.a(ec_config.o): relocation R_X86_64_PC32 against symbol `ecx_mapt' can not be used when making a shared object; recompile with -fPIC\n"}
+[2.991885] (mycobot_hardware) StderrLine: {'line': b'/usr/bin/ld: final link failed: bad value\n'}
+[2.992913] (mycobot_hardware) StderrLine: {'line': b'collect2: error: ld returned 1 exit status\n'}
+[2.994278] (mycobot_hardware) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/mycobot_hardware.dir/build.make:225: libmycobot_hardware.so] Error 1\n'}
+[2.994459] (mycobot_hardware) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/mycobot_hardware.dir/all] Error 2\n'}
+[2.994666] (mycobot_hardware) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[2.996412] (mycobot_hardware) CommandEnded: {'returncode': 2}
+[3.007656] (-) TimerEvent: {}
+[3.008736] (mycobot_hardware) JobEnded: {'identifier': 'mycobot_hardware', 'rc': 2}
+[3.019554] (-) EventReactorShutdown: {}
