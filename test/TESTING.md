@@ -33,6 +33,7 @@ the SOEM source tree the student already has:
 cd /path/to/SOEM
 mkdir -p build && cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
+cmake --build . -j8
 sudo cmake --install .
 sudo ldconfig
 ```
