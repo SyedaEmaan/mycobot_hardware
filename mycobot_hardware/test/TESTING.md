@@ -323,6 +323,15 @@ ERROR:
 
 ros2_control_node-1] [WARN] [1777281265.864269498] [controller_manager]: [Deprecated] Passing the robot description parameter directly to the control_manager node is deprecated. Use '~/robot_description' topic from 'robot_state_publisher' instead.
 
+Which was causing:
+munzir@munzir-ThinkPad-T14s-Gen-4:~/robotic_arm/docker_ws/arm_ws$ ros2 control list_hardware_interfaces
+[INFO] [1777282197.827834257] [_ros2cli_152184]: waiting for service /controller_manager/list_hardware_interfaces to become available...
+[WARN] [1777282207.847641655] [_ros2cli_152184]: Could not contact service /controller_manager/list_hardware_interfaces
+[INFO] [1777282207.848577519] [_ros2cli_152184]: waiting for service /controller_manager/list_hardware_interfaces to become available...
+[WARN] [1777282217.867335150] [_ros2cli_152184]: Could not contact service /controller_manager/list_hardware_interfaces
+[INFO] [1777282217.868406066] [_ros2cli_152184]: waiting for service /controller_manager/list_hardware_interfaces to become available...
+
+
 we made changes in launch file:
 Removed the direct {"robot_description": robot_description_content} parameter from the ros2_control_node.
 Added a topic remapping ("~/robot_description", "/robot_description") so the controller manager correctly subscribes to the URDF published by the robot_state_publisher.
