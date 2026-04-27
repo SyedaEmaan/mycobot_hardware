@@ -319,6 +319,14 @@ ros2 launch mycobot_hardware bringup_test.launch.py
 RESULT:
 MOTOR ENABLED (BRAKE RELEASED) - click sound very nice
 
+ERROR:
+
+ros2_control_node-1] [WARN] [1777281265.864269498] [controller_manager]: [Deprecated] Passing the robot description parameter directly to the control_manager node is deprecated. Use '~/robot_description' topic from 'robot_state_publisher' instead.
+
+we made changes in launch file:
+Removed the direct {"robot_description": robot_description_content} parameter from the ros2_control_node.
+Added a topic remapping ("~/robot_description", "/robot_description") so the controller manager correctly subscribes to the URDF published by the robot_state_publisher.
+
 ---END
 ### Power up the motor's 24 V/48 V supply, wire EtherCAT, then:
 

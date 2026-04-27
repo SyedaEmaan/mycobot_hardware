@@ -4,7 +4,7 @@
 
 controller_manager:
   ros__parameters:
-    update_rate: 200          # Hz — match the EtherCAT 5 ms cycle
+    update_rate: 100          # Hz — match the EtherCAT 10 ms cycle
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster

@@ -32,8 +32,10 @@ def generate_launch_description():
             package="controller_manager",
             executable="ros2_control_node",
             parameters=[
-                {"robot_description": robot_description_content},
                 controllers_yaml,
+            ],
+            remappings=[
+                ("~/robot_description", "/robot_description"),
             ],
             output="screen",
         ),

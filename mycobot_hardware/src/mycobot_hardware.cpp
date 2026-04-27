@@ -67,8 +67,8 @@ int MyCobotHardware::slave_csp_config(ecx_contextt * context, uint16_t slave)
     return -1;  /* drive did not accept CSP */
   }
 
-  /* Step 2: interpolation period 5 ms (10^-3 s base) */
-  int8_t interp_val = 5;
+  /* Step 2: interpolation period 10 ms (10^-3 s base) */
+  int8_t interp_val = 10;
   int8_t interp_idx = -3;
   ecx_SDOwrite(context, slave, 0x60C2, 0x01, FALSE,
                sizeof(interp_val), &interp_val, EC_TIMEOUTSAFE);
