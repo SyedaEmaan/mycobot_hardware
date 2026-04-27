@@ -321,8 +321,8 @@ ament_cmake_symlink_install_files("/home/rosdev/arm_ws/mycobot_hardware/mycobot_
 # install(DIRECTORY "include/" "DESTINATION" "include")
 ament_cmake_symlink_install_directory("/home/rosdev/arm_ws/mycobot_hardware/mycobot_hardware" DIRECTORY "include/" "DESTINATION" "include")
 
-# install(DIRECTORY "config" "urdf" "DESTINATION" "share/mycobot_hardware" "OPTIONAL")
-ament_cmake_symlink_install_directory("/home/rosdev/arm_ws/mycobot_hardware/mycobot_hardware" DIRECTORY "config" "urdf" "DESTINATION" "share/mycobot_hardware" "OPTIONAL")
+# install(DIRECTORY "config" "urdf" "launch" "DESTINATION" "share/mycobot_hardware" "OPTIONAL")
+ament_cmake_symlink_install_directory("/home/rosdev/arm_ws/mycobot_hardware/mycobot_hardware" DIRECTORY "config" "urdf" "launch" "DESTINATION" "share/mycobot_hardware" "OPTIONAL")
 
 # install(FILES "mycobot_hardware_plugin.xml" "DESTINATION" "share/mycobot_hardware")
 ament_cmake_symlink_install_files("/home/rosdev/arm_ws/mycobot_hardware/mycobot_hardware" FILES "mycobot_hardware_plugin.xml" "DESTINATION" "share/mycobot_hardware")

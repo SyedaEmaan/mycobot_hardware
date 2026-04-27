@@ -37,7 +37,7 @@
 
     <hardware>
       <plugin>mycobot_hardware/MyCobotHardware</plugin>
-      <param name="ifname">eth0</param>
+      <param name="ifname">enxc8a3623069bf</param>
     </hardware>
 
     <joint name="joint_1">

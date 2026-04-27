@@ -36,9 +36,17 @@ cmake .. -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=/usr/local
 cmake --build . -j8
 sudo cmake --install .
 sudo ldconfig
+
+To rebuild on your system outside docker, go to robotic_arm/docker_ws/arm_ws/SOEM/build and do:
+rm -rf*
+and then re-run the above commands:
+cmake .. -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=/usr/local
+cmake --build . -j8
+sudo cmake --install .
+sudo ldconfig
 ```
 
-Verify:
+Verify (for both container and outside of it):
 ```bash
 ls /usr/local/lib/libsoem*       # should show libsoem.so
 ls /usr/local/include/soem     # should show soem.h

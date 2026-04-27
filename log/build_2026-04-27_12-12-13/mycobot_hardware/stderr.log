@@ -1,0 +1,5 @@
+[31mCMake Error at CMakeLists.txt:52 (message):
+  SOEM not found.  Either install pkg-config support, or pass
+  -DSOEM_ROOT=/path/to/soem/install when invoking cmake.
+
+[0m

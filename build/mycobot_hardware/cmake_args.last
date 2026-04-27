@@ -1,0 +1,1 @@
+['-DSOEM_ROOT=/home/munzir/robotic_arm/docker_ws/arm_ws/mycobot_hardware/SOEM', '-DAMENT_CMAKE_SYMLINK_INSTALL=1']
