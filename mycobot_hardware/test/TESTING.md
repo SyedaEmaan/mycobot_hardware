@@ -45,12 +45,64 @@ cmake --build . -j8
 sudo cmake --install .
 sudo ldconfig
 ```
+Verify (for both container and outside of it):
+```bash
+ls /usr/local/lib/libsoem*       # should show libsoem.so
+ls /usr/local/include/soem     # should show soem.h
+```
+---this is for (IRL system not container:)
+
+To rebuild on your system outside docker, go to robotic_arm/docker_ws/arm_ws/SOEM/build and do:
+rm -rf*
+and then re-run the above commands:
+cmake .. -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=/usr/local
+cmake --build . -j8
+sudo cmake --install .
+sudo ldconfig
 
 Verify (for both container and outside of it):
 ```bash
 ls /usr/local/lib/libsoem*       # should show libsoem.so
 ls /usr/local/include/soem     # should show soem.h
 ```
+
+Make sure relevant depencancies are here:
+sudo apt update
+sudo apt install ros-humble-backward-cpp ros-humble-ros2-control ros-humble-ros2-controllers
+* note ^ backward-cpp was causing issues so:
+# Re-confirm the ROS 2 humble repository is active
+sudo apt install software-properties-common
+sudo add-apt-repository university-archive/ros-humble -y # If not already added
+sudo apt update
+sudo apt install libbackward-cpp-dev
+
+THEN:
+sudo setcap cap_net_raw,cap_net_admin=eip \
+  $(readlink -f $(ros2 pkg prefix controller_manager)/lib/controller_manager/ros2_control_node)
+  
+CHECK THIS COMMAND:
+ip link show enxc8a3623069bf
+
+output should be:
+8: enxc8a3623069bf: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP mode DEFAULT group default qlen 1000
+    link/ether c8:a3:62:30:69:bf brd ff:ff:ff:ff:ff:ff
+
+WE ARE GETTING THIS ERROR AT LAUNCH:
+
+[ros2_control_node-1] /opt/ros/humble/lib/controller_manager/ros2_control_node: error while loading shared libraries: libbackward.so: cannot open shared object file: No such file or directory
+
+HENCE WE have to build these libraries manually:
+cd ~/robotic_arm/docker_ws/arm_ws/backward-cpp
+
+# Manually compile the source into a shared library
+g++ -O2 -fPIC -shared backward.cpp -o libbackward.so
+
+# Move it to your system library path
+sudo cp libbackward.so /usr/local/lib/
+sudo ldconfig
+
+AND THEN RUN AGAIN:
+ros2 launch mycobot_hardware bringup_test.launch.py
 
 ### 2. Capability for raw Ethernet (avoid running ROS as root)
 
@@ -172,6 +224,102 @@ Edit `your_robot_pkg` and `your_robot_xacro` to point at the description
 package. (If the URDF lives loose on disk, replace with `Command(["xacro ",
 "/absolute/path/to/robot.urdf.xacro"])`.)
 
+---START this is for (IRL system not container:)
+
+To rebuild on your system outside docker, go to robotic_arm/docker_ws/arm_ws/SOEM/build and do:
+rm -rf*
+and then re-run the above commands:
+cmake .. -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=/usr/local
+cmake --build . -j8
+sudo cmake --install .
+sudo ldconfig
+
+Verify (for both container and outside of it):
+```bash
+ls /usr/local/lib/libsoem*       # should show libsoem.so
+ls /usr/local/include/soem     # should show soem.h
+```
+
+Make sure relevant depencancies are here:
+sudo apt update
+sudo apt install ros-humble-backward-cpp ros-humble-ros2-control ros-humble-ros2-controllers
+* note ^ backward-cpp was causing issues so:
+# Re-confirm the ROS 2 humble repository is active
+sudo apt install software-properties-common
+sudo add-apt-repository university-archive/ros-humble -y # If not already added
+sudo apt update
+sudo apt install libbackward-cpp-dev
+
+THEN:
+sudo setcap cap_net_raw,cap_net_admin=eip \
+  $(readlink -f $(ros2 pkg prefix controller_manager)/lib/controller_manager/ros2_control_node)
+  
+CHECK THIS COMMAND:
+ip link show enxc8a3623069bf
+
+output should be:
+8: enxc8a3623069bf: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP mode DEFAULT group default qlen 1000
+    link/ether c8:a3:62:30:69:bf brd ff:ff:ff:ff:ff:ff
+
+WE ARE GETTING THIS ERROR AT LAUNCH:
+
+[ros2_control_node-1] /opt/ros/humble/lib/controller_manager/ros2_control_node: error while loading shared libraries: libbackward.so: cannot open shared object file: No such file or directory
+
+HENCE WE have to build these libraries manually:
+cd ~/robotic_arm/docker_ws/arm_ws/backward-cpp
+
+# Manually compile the source into a shared library
+g++ -O2 -fPIC -shared backward.cpp -o libbackward.so
+
+# Move it to your system library path
+sudo cp libbackward.so /usr/local/lib/
+sudo ldconfig
+
+AND THEN RUN AGAIN:
+ros2 launch mycobot_hardware bringup_test.launch.py
+
+NEW ERROR:
+[ros2_control_node-1] /opt/ros/humble/lib/controller_manager/ros2_control_node: error while loading shared libraries: libcontroller_manager.so: cannot open shared object file: No such file or directory 
+FIX:
+# Create a new configuration file for the linker
+echo "/opt/ros/humble/lib" | sudo tee /etc/ld.so.conf.d/ros-humble.conf
+
+# Update the cache
+sudo ldconfig
+
+
+sudo setcap cap_net_raw,cap_net_admin=eip \
+  $(readlink -f $(ros2 pkg prefix controller_manager)/lib/controller_manager/ros2_control_node)
+  
+  source /opt/ros/humble/setup.bash
+source ~/robotic_arm/docker_ws/arm_ws/install/setup.bash
+ros2 launch mycobot_hardware bringup_test.launch.py
+
+NEW ERORR:
+[ros2_control_node-1] [ERROR] [1777278335.944118571] [rcl]: Error getting RMW implementation identifier / RMW implementation not installed (expected identifier of 'rmw_cyclonedds_cpp'), with error message 'failed to load shared library 'librmw_cyclonedds_cpp.so' due to dlopen error: libddsc.so.0: cannot open shared object file: No such file or directory, at ./src/shared_library.c:99, at ./src/functions.cpp:65', exiting with 1., at ./src/rcl/rmw_implementation_identifier_check.c:139
+[ros2_control_node-1] 
+[ERROR] [ros2_control_node-1]: process has died [pid 128675, exit code 1, cmd '/opt/ros/humble/lib/controller_manager/ros2_control_node --ros-args --params-file /tmp/launch_params_p2yjtwyd --params-file /home/munzir/robotic_arm/docker_ws/arm_ws/install/mycobot_hardware/share/mycobot_hardware/config/controllers.yaml'].
+[robot_state_publisher-2] [INFO] [1777278335.948290766] [robot_state_publisher]: got segment base_link
+
+FIX:
+sudo apt update
+sudo apt install ros-humble-rmw-cyclonedds-cpp
+sudo setcap cap_net_raw,cap_net_admin=eip \
+  $(readlink -f $(ros2 pkg prefix controller_manager)/lib/controller_manager/ros2_control_node)
+# 1. Environment setup
+source /opt/ros/humble/setup.bash
+source ~/robotic_arm/docker_ws/arm_ws/install/setup.bash
+
+# 2. Fix the Middleware (Switch to default or use installed Cyclone)
+export RMW_IMPLEMENTATION=rmw_fastrtps_cpp 
+
+# 3. Launch
+ros2 launch mycobot_hardware bringup_test.launch.py
+
+RESULT:
+MOTOR ENABLED (BRAKE RELEASED) - click sound very nice
+
+---END
 ### Power up the motor's 24 V/48 V supply, wire EtherCAT, then:
 
 ```bash
