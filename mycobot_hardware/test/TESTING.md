@@ -290,7 +290,8 @@ sudo ldconfig
 
 sudo setcap cap_net_raw,cap_net_admin=eip \
   $(readlink -f $(ros2 pkg prefix controller_manager)/lib/controller_manager/ros2_control_node)
-  
+  ros2 launch mycobot_hardware bringup_test.launch.py
+
   source /opt/ros/humble/setup.bash
 source ~/robotic_arm/docker_ws/arm_ws/install/setup.bash
 ros2 launch mycobot_hardware bringup_test.launch.py
@@ -335,6 +336,40 @@ munzir@munzir-ThinkPad-T14s-Gen-4:~/robotic_arm/docker_ws/arm_ws$ ros2 control l
 we made changes in launch file:
 Removed the direct {"robot_description": robot_description_content} parameter from the ros2_control_node.
 Added a topic remapping ("~/robot_description", "/robot_description") so the controller manager correctly subscribes to the URDF published by the robot_state_publisher.
+
+
+Error update: 
+still cannot contact service
+
+Actions taken:
+launch file:
+parameters=[
+                controllers_yaml,
+                {"robot_description": robot_description_content},
+                
+mycobot_hardware.cpp file:
+increase the speed at which you're sending data, i.e. from 10ms to 2ms:
+  return ecx_receive_processdata(&context_, 2000);
+
+lower update rate inside controller_manager, ros__parameters of controllers.yaml:
+update_date: 100
+instead of the 200
+
+
+before running each terminal, run this command inside each terminal:
+export RMW_IMPLEMENTATION=rmw_fastrtps_cpp 
+
+current status:
+munzir@munzir-ThinkPad-T14s-Gen-4:~/robotic_arm/docker_ws/arm_ws$ ros2 control list_hardware_interfaces
+command interfaces
+	link1_to_link2/position [available] [unclaimed]
+state interfaces
+	link1_to_link2/position
+	link1_to_link2/velocity
+
+
+.md file created inside Downloads that is a copy of the conversation with antigravity.
+
 
 ---END
 ### Power up the motor's 24 V/48 V supply, wire EtherCAT, then:

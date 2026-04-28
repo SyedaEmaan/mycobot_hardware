@@ -375,7 +375,7 @@ bool MyCobotHardware::reach_operational()
 int MyCobotHardware::fieldbus_roundtrip()
 {
   ecx_send_processdata(&context_);
-  return ecx_receive_processdata(&context_, 10000);
+  return ecx_receive_processdata(&context_, 2000);
 }
 
 bool MyCobotHardware::enable_drive(int s)
