@@ -368,6 +368,19 @@ state interfaces
 	link1_to_link2/velocity
 
 
+munzir@munzir-ThinkPad-T14s-Gen-4:~/robotic_arm/docker_ws/arm_ws$ ros2 control list_hardware_components
+Hardware Component 1
+	name: MyCobotHardwareSystem
+	type: system
+	plugin name: mycobot_hardware/MyCobotHardware
+	state: id=3 label=active
+	command interfaces
+		link1_to_link2/position [available] [unclaimed]
+munzir@munzir-ThinkPad-T14s-Gen-4:~/robotic_arm/docker_ws/arm_ws$ ^C
+munzir@munzir-ThinkPad-T14s-Gen-4:~/robotic_arm/docker_ws/arm_ws$ 
+
+
+
 .md file created inside Downloads that is a copy of the conversation with antigravity.
 
 
