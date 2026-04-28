@@ -383,6 +383,35 @@ munzir@munzir-ThinkPad-T14s-Gen-4:~/robotic_arm/docker_ws/arm_ws$
 
 .md file created inside Downloads that is a copy of the conversation with antigravity.
 
+Position command to use:
+
+ros2 topic pub /forward_position_controller/commands std_msgs/msg/Float64MultiArray "{data: [1.80]  
+
+The changes we did to increase speed and acceleration in the controllers.yaml file:
+
+    constraints:
+      stopped_velocity_tolerance: 0.05
+      goal_time: 1.0
+      link1_to_link2:
+        trajectory: 0.5
+        goal: 0.05
+
+    # These define the maximum speed the controller will command
+    joint_limits:
+      link1_to_link2:
+        has_velocity_limits: true
+        max_velocity: 2.0        # Increase this (rad/s). Try 1.0 or 2.0.
+        has_acceleration_limits: true
+        max_acceleration: 3.0    # Increase this (rad/s^2). Try 5.0 or 10.0.
+    # -----------------------
+
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+
+NEW ERROR:
+
+The motor is DRIFTING.
+
 
 ---END
 ### Power up the motor's 24 V/48 V supply, wire EtherCAT, then:
