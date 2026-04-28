@@ -120,6 +120,7 @@ private:
   std::vector<int>     joint_to_slave_;     /* SOEM slave index, 1-based */
   std::vector<double>  counts_per_rad_;     /* encoder counts per radian (output side) */
   std::vector<int32_t> last_position_counts_; /* for velocity diff */
+  std::vector<int32_t> initial_position_counts_; /* startup offset */
 
   /* plugin-level config (parsed from URDF <hardware> block) */
   std::string ifname_;        /* e.g. "eth0", "enp3s0" */

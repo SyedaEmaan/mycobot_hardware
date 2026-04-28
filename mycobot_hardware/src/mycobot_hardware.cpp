@@ -182,6 +182,7 @@ hardware_interface::CallbackReturn MyCobotHardware::on_init(
   joint_to_slave_.assign(n_joints_, 0);
   counts_per_rad_.assign(n_joints_, 0.0);
   last_position_counts_.assign(n_joints_, 0);
+  initial_position_counts_.assign(n_joints_, 0);
 
   int max_slave = 0;
   for (size_t i = 0; i < n_joints_; ++i) {
@@ -520,10 +521,11 @@ hardware_interface::CallbackReturn MyCobotHardware::on_activate(
   for (size_t i = 0; i < n_joints_; ++i) {
     int s = joint_to_slave_[i];
     int32_t cnt = txpdo_[s]->position_actual;
+    initial_position_counts_[i] = cnt;
     last_position_counts_[i] = cnt;
-    hw_positions_[i]  = static_cast<double>(cnt) / counts_per_rad_[i];
+    hw_positions_[i]  = 0.0;
     hw_velocities_[i] = 0.0;
-    hw_commands_[i]   = hw_positions_[i];   /* hold-position on activation */
+    hw_commands_[i]   = 0.0;   /* hold-position on activation */
   }
 
   RCLCPP_INFO(logger_, "MyCobotHardware ACTIVE — %zu drive(s) operating.", n_joints_);
@@ -557,8 +559,9 @@ hardware_interface::return_type MyCobotHardware::read(
   for (size_t i = 0; i < n_joints_; ++i) {
     int s = joint_to_slave_[i];
     int32_t cnt = txpdo_[s]->position_actual;
+    int32_t rel_cnt = cnt - initial_position_counts_[i];
 
-    double pos_rad = static_cast<double>(cnt) / counts_per_rad_[i];
+    double pos_rad = static_cast<double>(rel_cnt) / counts_per_rad_[i];
     hw_velocities_[i] =
       (static_cast<double>(cnt - last_position_counts_[i]) / counts_per_rad_[i]) / dt;
     hw_positions_[i]  = pos_rad;
@@ -580,12 +583,22 @@ hardware_interface::return_type MyCobotHardware::write(
     double cmd = hw_commands_[i];
     if (!std::isfinite(cmd)) cmd = hw_positions_[i];
 
-    int32_t cnt = static_cast<int32_t>(std::lround(cmd * counts_per_rad_[i]));
+    int32_t cnt = static_cast<int32_t>(std::lround(cmd * counts_per_rad_[i])) + initial_position_counts_[i];
 
-    rxpdo_[s]->target_position  = cnt;
-    rxpdo_[s]->controlword      = CW_QUICK_STOP | CW_ENABLE_VOLTAGE
-                                | CW_SWITCH_ON  | CW_ENABLE_OPERATION;
-    rxpdo_[s]->physical_output  = 0x00000001;   /* brake released */
+    uint16_t sw = txpdo_[s]->statusword;
+    
+    if (sw & SW_FAULT) {
+      // Drive faulted (e.g. following error from a step jump). 
+      // ENGAGE brake and stop commanding movement.
+      rxpdo_[s]->target_position  = txpdo_[s]->position_actual;
+      rxpdo_[s]->controlword      = CW_QUICK_STOP | CW_ENABLE_VOLTAGE; 
+      rxpdo_[s]->physical_output  = 0x00000000;   /* brake ENGAGED */
+    } else {
+      rxpdo_[s]->target_position  = cnt;
+      rxpdo_[s]->controlword      = CW_QUICK_STOP | CW_ENABLE_VOLTAGE
+                                  | CW_SWITCH_ON  | CW_ENABLE_OPERATION;
+      rxpdo_[s]->physical_output  = 0x00000001;   /* brake released */
+    }
     rxpdo_[s]->touch_probe_func = 0;
   }
 
